@@ -1,3 +1,116 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Be+Vietnam+Pro:wght@300;400;500;600&display=swap');
+
+@import "tailwindcss";
+
+@theme {
+  --color-background: #fbf9f4;
+  --color-primary: #a33f00;
+  --color-primary-dim: #7d3000;
+  --color-primary-fixed: #a33f00;
+  --color-primary-container: #ffae89;
+  --color-secondary: #4CAF50;
+  --color-secondary-container: #E8F5E9;
+  --color-on-secondary-container: #1B5E20;
+  --color-tertiary-container: #FFF3E0;
+  --color-surface: #fbf9f4;
+  --color-surface-dim: #f2f0ea;
+  --color-surface-bright: #fffdf9;
+  --color-surfaceContainerLowest: #ffffff;
+  --color-surfaceContainerLow: #f7f5ef;
+  --color-surfaceContainer: #f1eee6;
+  --color-surfaceContainerHigh: #ebe8e0;
+  --color-surfaceContainerHighest: #e5e2da;
+  --color-onSurface: #31332e;
+  --color-onSurfaceVariant: #5e605a;
+  --color-on-primary: #ffffff;
+  --color-errorContainer: #fa7150;
+  --color-onErrorContainer: #671200;
+  
+  --font-display: 'Plus Jakarta Sans', sans-serif;
+  --font-body: 'Be Vietnam Pro', sans-serif;
+  
+  --shadow-atmospheric: 0 20px 40px rgba(73, 24, 0, 0.06);
+}
+
+body {
+  background-color: var(--color-background);
+  color: var(--color-onSurface);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: 700;
+}
+
+/* Custom utility fallbacks */
+.bg-background { background-color: var(--color-background); }
+.bg-surface { background-color: var(--color-surface); }
+.bg-surface-container { background-color: var(--color-surfaceContainer); }
+.bg-surface-container:hover { background-color: var(--color-surfaceContainerHigh); }
+.bg-surface-container-low { background-color: var(--color-surfaceContainerLow); }
+.bg-surface-container-lowest { background-color: var(--color-surfaceContainerLowest); }
+.bg-surface-container-high { background-color: var(--color-surfaceContainerHigh); }
+.bg-surface-container-highest { background-color: var(--color-surfaceContainerHighest); }
+.bg-surface-variant { background-color: var(--color-surfaceContainerHigh); }
+.bg-primary { background-color: var(--color-primary); }
+.bg-primary-dim { background-color: var(--color-primary-dim); }
+.bg-primary-container { background-color: var(--color-primary-container); }
+.bg-secondary-container { background-color: var(--color-secondary-container); }
+.bg-tertiary-container { background-color: var(--color-tertiary-container); }
+.bg-error-container { background-color: var(--color-errorContainer); }
+.bg-white { background-color: #ffffff; }
+.bg-stone-100 { background-color: #f5f5f4; }
+
+.text-on-surface { color: var(--color-onSurface); }
+.text-on-surface-variant { color: var(--color-onSurfaceVariant); }
+.text-on-error-container { color: var(--color-onErrorContainer); }
+.text-on-primary { color: var(--color-on-primary); }
+.text-primary { color: var(--color-primary); }
+.text-secondary { color: var(--color-secondary); }
+.text-white { color: #ffffff; }
+.text-orange-700 { color: #c2410c; }
+
+.border-background { border-color: var(--color-background); }
+.border-outline-variant { border-color: var(--color-onSurfaceVariant); }
+
+.hover\:text-primary:hover { color: var(--color-primary); }
+.hover\:bg-surface-container-highest:hover { background-color: var(--color-surfaceContainerHighest); }
+.hover\:bg-primary-container:hover { background-color: var(--color-primary-container); }
+.hover\:bg-white\/90:hover { background-color: rgba(255, 255, 255, 0.9); }
+.hover\:bg-gray-100:hover { background-color: #f3f4f6; }
+.hover\:shadow-xl:hover { box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1); }
+.hover\:shadow-atmospheric:hover { box-shadow: var(--shadow-atmospheric); }
+
+.shadow-xl { box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1); }
+.shadow-lg { box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); }
+.shadow-sm { box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); }
+.shadow-atmospheric { box-shadow: var(--shadow-atmospheric); }
+
+/* Blur utilities */
+.blur-2xl { filter: blur(40px); }
+.blur-3xl { filter: blur(60px); }
+
+/* Animation helpers */
+.animate-spin { animation: spin 1s linear infinite; }
+@keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+/* Scale helpers */
+.scale-105 { transform: scale(1.05); }
+
+/* Font helpers */
+.font-display { font-family: var(--font-display); }
+.font-body { font-family: var(--font-body); }
+.font-black { font-weight: 900; }
+.font-extrabold { font-weight: 800; }
+.font-bold { font-weight: 700; }
+.font-medium { font-weight: 500; }
+
+/* Rounded helpers */
+.rounded-full { border-radius: 9999px; }
+.rounded-xl { border-radius: 0.75rem; }
+
+/* Aspect ratio */
+.aspect-square { aspect-ratio: 1 / 1; }
+.aspect-\[4\/5\] { aspect-ratio: 4 / 5; }
