@@ -1,12 +1,12 @@
 import React from 'react';
-import Navbar from '../components/landing/Navbar';
-import HeroSection from '../components/landing/HeroSection';
-import FeaturesSection from '../components/landing/FeaturesSection';
-import HowItWorksSection from '../components/landing/HowItWorksSection';
-import TestimonialsSection from '../components/landing/TestimonialsSection';
-import CtaSection from '../components/landing/CtaSection';
-import Footer from '../components/landing/Footer';
-import FloatingActionButton from '../components/landing/FloatingActionButton';
+import Navbar from '../components/Navbar';
+import HeroSection from '../components/HeroSection';
+import FeaturesSection from '../components/FeaturesSection';
+import HowItWorksSection from '../components/HowItWorksSection';
+import TestimonialsSection from '../components/TestimonialsSection';
+import CtaSection from '../components/CtaSection';
+import Footer from '../components/Footer';
+import FloatingActionButton from '../components/FloatingActionButton';
 
 const LandingPage = () => {
   return (
