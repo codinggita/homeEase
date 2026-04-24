@@ -53,7 +53,7 @@
   --color-outline-variant: #b2b2ab;
   --color-on-tertiary-fixed: #504739;
   
-  --radius-DEFAULT: 1rem;
+  --radius: 1rem;
   --radius-lg: 2rem;
   --radius-xl: 3rem;
   --radius-full: 9999px;

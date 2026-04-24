@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const HowItWorksSection = () => {
   return (
@@ -34,7 +35,7 @@ const HowItWorksSection = () => {
               </div>
             </div>
           </div>
-          <button className="bg-primary text-on-primary px-10 py-5 rounded-full font-black text-xl shadow-lg hover:shadow-2xl transition-all">Start My Request</button>
+          <Link to="/signup" className="bg-primary text-on-primary px-10 py-5 rounded-full font-black text-xl shadow-lg hover:shadow-2xl transition-all inline-block">Start My Request</Link>
         </div>
       </div>
     </section>

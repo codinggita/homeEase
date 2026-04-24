@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const HeroSection = () => {
   return (
@@ -16,7 +17,7 @@ const HeroSection = () => {
             Emergency housekeeping, childcare, and repair services verified by professionals. Because your sanctuary shouldn't be a source of stress.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 pt-4">
-            <button className="bg-primary text-on-primary px-8 py-4 rounded-full font-bold text-lg shadow-2xl hover:bg-primary-dim transition-all">Book Help Now</button>
+            <Link to="/signup" className="bg-primary text-on-primary px-8 py-4 rounded-full font-bold text-lg shadow-2xl hover:bg-primary-dim transition-all text-center">Book Help Now</Link>
             <button className="bg-secondary-container text-on-secondary-container px-8 py-4 rounded-full font-bold text-lg hover:bg-secondary-fixed transition-all">View Services</button>
           </div>
           <div className="flex items-center gap-4 pt-6">
