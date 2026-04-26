@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const LoginPage = () => {
+  const navigate = useNavigate();
+  const [showPassword, setShowPassword] = useState(false);
+
   const formik = useFormik({
     initialValues: {
       userType: 'need_help',
@@ -15,8 +18,52 @@ const LoginPage = () => {
       email: Yup.string().email('Invalid email address').required('Required'),
       password: Yup.string().required('Required'),
     }),
-    onSubmit: values => {
+    onSubmit: async (values, { setFieldError, setSubmitting }) => {
       console.log('Login Form Data:', values);
+      
+      // Validate role selection
+      if (!values.userType && values.email !== 'admin@gmail.com') {
+        setFieldError('email', 'Please select a role (I need help or I want to help)');
+        return;
+      }
+
+      try {
+        const response = await fetch('http://localhost:5000/api/auth/login', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(values),
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+          // Store token
+          localStorage.setItem('token', data.token);
+          localStorage.setItem('user', JSON.stringify(data.user));
+
+          if (data.user.userType === 'admin') {
+            navigate('/admin-dashboard');
+          } else if (data.user.userType === 'want_to_help') {
+            navigate('/worker-dashboard');
+          } else {
+            navigate('/user-dashboard');
+          }
+        } else {
+          // Determine where to show error based on message
+          if (data.message && data.message.toLowerCase().includes('password')) {
+            setFieldError('password', data.message);
+          } else {
+            setFieldError('email', data.message || 'Login failed');
+          }
+        }
+      } catch (error) {
+        console.error('Login Error:', error);
+        setFieldError('email', 'Network error. Please try again.');
+      } finally {
+        setSubmitting(false);
+      }
     },
   });
 
@@ -92,14 +139,23 @@ const LoginPage = () => {
                 <div className="relative">
                   <input
                     name="password"
-                    type="password"
+                    type={showPassword ? "text" : "password"}
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
                     value={formik.values.password}
-                    className="w-full bg-surface-container-highest border-none rounded-md py-4 pl-12 pr-4 text-on-surface focus:ring-2 focus:ring-primary/30 transition-all placeholder:text-outline-variant" 
+                    className="w-full bg-surface-container-highest border-none rounded-md py-4 pl-12 pr-12 text-on-surface focus:ring-2 focus:ring-primary/30 transition-all placeholder:text-outline-variant" 
                     placeholder="••••••••" 
                   />
                   <span className="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant opacity-60">lock</span>
+                  <button 
+                    type="button" 
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="absolute right-4 top-1/2 -translate-y-1/2 text-on-surface-variant opacity-60 hover:opacity-100 transition-opacity flex items-center justify-center"
+                  >
+                    <span className="material-symbols-outlined">
+                      {showPassword ? 'visibility_off' : 'visibility'}
+                    </span>
+                  </button>
                 </div>
                 {formik.touched.password && formik.errors.password ? (
                   <div className="text-error text-xs ml-2 mt-1">{formik.errors.password}</div>
