@@ -200,7 +200,7 @@ const LoginPage = () => {
             <div className="bg-surface-container-low py-6 px-10 text-center">
               <p className="text-sm font-medium text-on-surface-variant">
                 New to HomeEase? 
-                <a className="text-primary font-bold underline underline-offset-4 decoration-4 decoration-primary/20 hover:decoration-primary/60 transition-all ml-1" href="/signup">Create an account</a>
+                <Link className="text-primary font-bold underline underline-offset-4 decoration-4 decoration-primary/20 hover:decoration-primary/60 transition-all ml-1" to="/signup">Create an account</Link>
               </p>
             </div>
           </div>
