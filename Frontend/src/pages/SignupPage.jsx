@@ -1,26 +1,69 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import { useSearchParams, Link } from 'react-router-dom';
+import { useSearchParams, Link, useNavigate } from 'react-router-dom';
 
 const SignupPage = () => {
   const [searchParams] = useSearchParams();
   const initialType = searchParams.get('type') === 'want_to_help' ? 'want_to_help' : 'need_help';
+  const [showPassword, setShowPassword] = useState(false);
+  
+  const navigate = useNavigate();
 
   const formik = useFormik({
     initialValues: {
       userType: initialType,
+      name: '',
+      phone: '',
       email: '',
       password: '',
       terms: false,
     },
     validationSchema: Yup.object({
+      name: Yup.string().required('Required'),
+      phone: Yup.string().required('Required'),
       email: Yup.string().email('Invalid email address').required('Required'),
       password: Yup.string().min(8, 'Must be at least 8 characters').required('Required'),
       terms: Yup.boolean().oneOf([true], 'You must accept the terms and conditions'),
     }),
-    onSubmit: values => {
+    onSubmit: async (values, { setFieldError, setSubmitting }) => {
       console.log('Signup Form Data:', values);
+
+      if (!values.userType) {
+        setFieldError('email', 'Please select a role (I need help or I want to help)');
+        return;
+      }
+
+      try {
+        const response = await fetch('http://localhost:5000/api/auth/register', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(values),
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+          // Store token and user details for immediate login
+          localStorage.setItem('token', data.token);
+          localStorage.setItem('user', JSON.stringify(data.user));
+
+          if (data.user.userType === 'want_to_help') {
+            navigate('/worker-dashboard');
+          } else {
+            navigate('/user-dashboard');
+          }
+        } else {
+          setFieldError('email', data.message || 'Registration failed');
+        }
+      } catch (error) {
+        console.error('Registration Error:', error);
+        setFieldError('email', 'Network error. Please try again.');
+      } finally {
+        setSubmitting(false);
+      }
     },
   });
 
@@ -134,6 +177,36 @@ const SignupPage = () => {
                   {/* Form Fields */}
                   <div className="space-y-4">
                     <div>
+                      <label className="block text-xs font-bold tracking-wider uppercase text-on-surface-variant ml-2 mb-1">Full Name</label>
+                      <input
+                        name="name"
+                        type="text"
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                        value={formik.values.name}
+                        className="w-full bg-surface-container-highest border-none rounded-md py-4 px-4 text-on-surface focus:ring-2 focus:ring-primary/30 transition-all placeholder:text-outline-variant"
+                        placeholder="John Doe"
+                      />
+                      {formik.touched.name && formik.errors.name ? (
+                        <div className="text-error text-xs ml-2 mt-1">{formik.errors.name}</div>
+                      ) : null}
+                    </div>
+                    <div>
+                      <label className="block text-xs font-bold tracking-wider uppercase text-on-surface-variant ml-2 mb-1">Phone Number</label>
+                      <input
+                        name="phone"
+                        type="tel"
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                        value={formik.values.phone}
+                        className="w-full bg-surface-container-highest border-none rounded-md py-4 px-4 text-on-surface focus:ring-2 focus:ring-primary/30 transition-all placeholder:text-outline-variant"
+                        placeholder="+91 9420 000 000"
+                      />
+                      {formik.touched.phone && formik.errors.phone ? (
+                        <div className="text-error text-xs ml-2 mt-1">{formik.errors.phone}</div>
+                      ) : null}
+                    </div>
+                    <div>
                       <label className="block text-xs font-bold tracking-wider uppercase text-on-surface-variant ml-2 mb-1">Email Address</label>
                       <input
                         name="email"
@@ -150,15 +223,26 @@ const SignupPage = () => {
                     </div>
                     <div>
                       <label className="block text-xs font-bold tracking-wider uppercase text-on-surface-variant ml-2 mb-1">Password</label>
-                      <input
-                        name="password"
-                        type="password"
-                        onChange={formik.handleChange}
-                        onBlur={formik.handleBlur}
-                        value={formik.values.password}
-                        className="w-full bg-surface-container-highest border-none rounded-md py-4 px-4 text-on-surface focus:ring-2 focus:ring-primary/30 transition-all placeholder:text-outline-variant"
-                        placeholder="••••••••"
-                      />
+                      <div className="relative">
+                        <input
+                          name="password"
+                          type={showPassword ? "text" : "password"}
+                          onChange={formik.handleChange}
+                          onBlur={formik.handleBlur}
+                          value={formik.values.password}
+                          className="w-full bg-surface-container-highest border-none rounded-md py-4 pl-4 pr-12 text-on-surface focus:ring-2 focus:ring-primary/30 transition-all placeholder:text-outline-variant"
+                          placeholder="••••••••"
+                        />
+                        <button 
+                          type="button" 
+                          onClick={() => setShowPassword(!showPassword)}
+                          className="absolute right-4 top-1/2 -translate-y-1/2 text-on-surface-variant opacity-60 hover:opacity-100 transition-opacity flex items-center justify-center"
+                        >
+                          <span className="material-symbols-outlined">
+                            {showPassword ? 'visibility_off' : 'visibility'}
+                          </span>
+                        </button>
+                      </div>
                       {formik.touched.password && formik.errors.password ? (
                         <div className="text-error text-xs ml-2 mt-1">{formik.errors.password}</div>
                       ) : null}
