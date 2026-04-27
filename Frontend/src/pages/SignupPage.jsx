@@ -76,9 +76,9 @@ const SignupPage = () => {
         </div>
         <div className="flex items-center gap-4">
           <span className="text-on-surface-variant text-sm font-medium hidden sm:inline">Already have an account?</span>
-          <a href="/login" className="text-primary font-bold border-b-4 border-primary-container pb-0.5 hover:border-primary transition-all">
+          <Link to="/login" className="text-primary font-bold border-b-4 border-primary-container pb-0.5 hover:border-primary transition-all">
             Sign In
-          </a>
+          </Link>
         </div>
       </header>
       
@@ -275,11 +275,11 @@ const SignupPage = () => {
                 <div className="pt-6 border-t border-outline-variant/15">
                   <p className="text-center text-sm font-medium text-on-surface-variant mb-6">Or continue with</p>
                   <div className="flex flex-wrap justify-center gap-4">
-                    <button className="flex items-center gap-3 px-6 py-3 rounded-full bg-surface-container-high hover:bg-surface-variant transition-colors font-semibold text-sm">
+                    <button type="button" className="flex items-center gap-3 px-6 py-3 rounded-full bg-surface-container-high hover:bg-surface-variant transition-colors font-semibold text-sm">
                       <img alt="Google" className="w-5 h-5" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD9xoWXTv8hi-S1gyfygOEd_eN4fcTU-0fBhAHLR41FG-AjphXj7u8CFmdmPjw5Djaywi3DL5c9t1g4uzCFOE1Bk1QkN9ukV_-7lvUB9qQfQTDAWZrMClfG_9Yaqsv5RZSHX6DOhs8AoHqceTieJ2MDsynY5vAQhAuuJxwhXJJxspJgyiRtO7SLu-PGgh-QEvnxmF7MfLrtxITSniKap7O7KShnInqqRA9J0_B-jhUSqFk-X0-wD4p_HOcKJ_SIwpL27nW7E8sv4pY"/>
                       Google
                     </button>
-                    <button className="flex items-center gap-3 px-6 py-3 rounded-full bg-surface-container-high hover:bg-surface-variant transition-colors font-semibold text-sm">
+                    <button type="button" className="flex items-center gap-3 px-6 py-3 rounded-full bg-surface-container-high hover:bg-surface-variant transition-colors font-semibold text-sm">
                       <img alt="Facebook" className="w-5 h-5" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDj8-nX4LGTZeZC-9zZjATpWBIJA1OS8fXPQdUWLAmCi21Lo2I6zUoom7ANeEyz5OY5_865yhd-bRBlThicgcIn-sVkg803g39D3iz7aAPigQvBu4DTwnYOTyuuFIzcqafFO4THPeiTcxy2CWWbvNkuGsQf3U-p86tTpyh21_6DtTsYmbn6lBwu9X5770yNuu8Z-GXdduyNlhxzYSKagyq723FTX2OcntoFDcmZtYE5GcNuea4jxbk7gvJkWnPCxFGPcyqFhFtXcsg"/>
                       Facebook
                     </button>
