@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 const DashboardLayout = ({ children, activeRoute, role: propRole }) => {
   const navigate = useNavigate();
   
-  // Detect role from localStorage or prop
+  // Detect role from prop or localStorage userType
   const userData = localStorage.getItem('user');
   let role = 'user';
   if (propRole) {
@@ -12,7 +12,7 @@ const DashboardLayout = ({ children, activeRoute, role: propRole }) => {
   } else if (userData) {
     try {
       const parsed = JSON.parse(userData);
-      role = parsed.role === 'worker' ? 'worker' : 'user';
+      role = parsed.userType === 'want_to_help' ? 'worker' : 'user';
     } catch (e) {
       console.error("Error parsing user data", e);
     }
@@ -36,10 +36,10 @@ const DashboardLayout = ({ children, activeRoute, role: propRole }) => {
 
   const navLinks = role === 'worker' ? [
     { id: 'dashboard', label: 'Dashboard', icon: 'grid_view', to: '/worker-dashboard' },
-    { id: 'requests',  label: 'Job Requests', icon: 'pending_actions', to: '#' },
-    { id: 'earnings',  label: 'My Earnings', icon: 'payments', to: '#' },
-    { id: 'messages',  label: 'Messages', icon: 'chat_bubble', to: '#' },
-    { id: 'profile',   label: 'Profile', icon: 'account_circle', to: '#' },
+    { id: 'requests',  label: 'Job Requests', icon: 'pending_actions', to: '/job-requests' },
+    { id: 'earnings',  label: 'My Bookings', icon: 'payments', to: '/earnings' },
+    { id: 'messages',  label: 'Messages', icon: 'chat_bubble', to: '/messages' },
+    { id: 'profile',   label: 'Profile', icon: 'account_circle', to: '/profile' },
   ] : [
     { id: 'dashboard', label: 'Dashboard', icon: 'grid_view', to: '/user-dashboard' },
     { id: 'bookings',  label: 'Bookings', icon: 'calendar_today', to: '/bookings' },
@@ -95,7 +95,7 @@ const DashboardLayout = ({ children, activeRoute, role: propRole }) => {
         <div className={`border-t border-outline-variant/15 pt-6 flex flex-col gap-2 ${role === 'worker' ? 'mt-auto' : ''}`}>
           <Link 
             className={`rounded-full mx-2 px-4 py-3 flex items-center ${isMinimized ? 'justify-center' : 'gap-3'} transition-transform hover:translate-x-1 ${activeRoute === 'help' ? 'bg-[#ffae89] text-[#a33f00] font-bold' : 'text-[#5e605a] hover:bg-stone-200'}`} 
-            to={role === 'worker' ? '#' : "/help"}
+            to="/help"
             title="Help Center"
           >
             <span className="material-symbols-outlined" style={activeRoute === 'help' ? { fontVariationSettings: "'FILL' 1" } : {}}>help</span>
