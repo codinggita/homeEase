@@ -88,9 +88,9 @@ const EmergencyPage = () => {
           <div className="lg:col-span-2 space-y-6">
 
             {/* Step 1: Service */}
-            <div className="bg-surface-container-lowest rounded-2xl border border-outline-variant/20 shadow-sm p-6">
-              <p className="text-xs font-bold text-on-surface-variant uppercase tracking-widest mb-4">Step 1 — Choose Service</p>
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+            <div className="bg-surface-container-low rounded-[2rem] p-8 space-y-6">
+              <p className="text-xs font-black text-on-surface-variant uppercase tracking-[0.2em] mb-4">Step 1 — Choose Service</p>
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
                 {EMERGENCY_SERVICES.map((svc) => (
                   <ServiceCard
                     key={svc.id}
@@ -100,46 +100,48 @@ const EmergencyPage = () => {
                   />
                 ))}
               </div>
-              {errors.service && <p className="text-xs text-error font-medium mt-2">{errors.service}</p>}
+              {errors.service && <p className="text-[10px] text-error font-black uppercase tracking-wider mt-2 ml-2">{errors.service}</p>}
             </div>
 
             {/* Step 2: Work Type */}
             {service && (
-              <div className="bg-surface-container-lowest rounded-2xl border border-outline-variant/20 shadow-sm p-6 animate-page-fade-in">
-                <p className="text-xs font-bold text-on-surface-variant uppercase tracking-widest mb-4">Step 2 — Work Type</p>
-                <div className="flex flex-wrap gap-2">
+              <div className="bg-surface-container-low rounded-[2rem] p-8 space-y-6 animate-page-fade-in">
+                <p className="text-xs font-black text-on-surface-variant uppercase tracking-[0.2em] mb-4">Step 2 — Work Type</p>
+                <div className="flex flex-wrap gap-3">
                   {service.workTypes.map((wt) => (
                     <button
                       key={wt}
                       type="button"
                       onClick={() => { setWorkType(wt); setErrors(p => ({ ...p, workType: undefined })); }}
-                      className={`px-4 py-2 rounded-xl text-sm font-semibold border-2 transition-all duration-150 ${
+                      className={`px-6 py-3 rounded-2xl text-sm font-bold transition-all duration-300 ${
                         workType === wt
-                          ? 'bg-primary text-on-primary border-primary'
-                          : 'bg-surface-container-lowest border-outline-variant/40 text-on-surface hover:border-primary/50'
+                          ? 'bg-primary text-on-primary'
+                          : 'bg-surface-container text-on-surface hover:bg-surface-container-highest'
                       }`}
                     >
                       {wt}
                     </button>
                   ))}
                 </div>
-                {errors.workType && <p className="text-xs text-error font-medium mt-2">{errors.workType}</p>}
+                {errors.workType && <p className="text-[10px] text-error font-black uppercase tracking-wider mt-2 ml-2">{errors.workType}</p>}
               </div>
             )}
 
             {/* Step 3: Work Size */}
-            <div className="bg-surface-container-lowest rounded-2xl border border-outline-variant/20 shadow-sm p-6">
-              <p className="text-xs font-bold text-on-surface-variant uppercase tracking-widest mb-4">Step 3 — Work Size</p>
+            <div className="bg-surface-container-low rounded-[2rem] p-8 space-y-6">
+              <p className="text-xs font-black text-on-surface-variant uppercase tracking-[0.2em] mb-4">Step 3 — Work Size</p>
               <WorkSizeSelector value={workSize} onChange={(v) => { setWorkSize(v); setErrors(p => ({ ...p, workSize: undefined })); }} />
-              <p className="text-xs text-on-surface-variant mt-3 bg-surface-container/50 p-2.5 rounded-lg border border-outline-variant/10">
-                <span className="font-bold text-primary">Note:</span> Please select as per your actual need, otherwise extra work charges may be applied by the worker.
-              </p>
-              {errors.workSize && <p className="text-xs text-error font-medium mt-2">{errors.workSize}</p>}
+              <div className="bg-surface-container/50 p-4 rounded-2xl border border-outline-variant/10">
+                <p className="text-xs text-on-surface-variant font-bold leading-relaxed">
+                  <span className="text-primary mr-1">NOTE:</span> Select as per actual need. Extra work charges may be applied by the worker if mismatch occurs.
+                </p>
+              </div>
+              {errors.workSize && <p className="text-[10px] text-error font-black uppercase tracking-wider mt-2 ml-2">{errors.workSize}</p>}
             </div>
 
             {/* Step 4: Address & Notes */}
-            <div className="bg-surface-container-lowest rounded-2xl border border-outline-variant/20 shadow-sm p-6 space-y-4">
-              <p className="text-xs font-bold text-on-surface-variant uppercase tracking-widest mb-2">Step 4 — Location</p>
+            <div className="bg-surface-container-low rounded-[2rem] p-8 space-y-8">
+              <p className="text-xs font-black text-on-surface-variant uppercase tracking-[0.2em] mb-2">Step 4 — Location</p>
               <Input
                 id="em-address"
                 label="Your Address"
@@ -153,7 +155,7 @@ const EmergencyPage = () => {
                 id="em-notes"
                 label="Notes (optional)"
                 as="textarea"
-                rows={2}
+                rows={3}
                 placeholder="Any specific instructions..."
                 value={notes}
                 onChange={(e) => setNotes(e.target.value)}

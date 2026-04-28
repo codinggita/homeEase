@@ -98,7 +98,7 @@ const UserDashboard = () => {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {/* History Tile 1 */}
-            <div className="bg-surface-container-lowest rounded-xl p-8 shadow-[0_4px_20px_rgba(0,0,0,0.02)] border border-outline-variant/10 group hover:-translate-y-1 transition-all">
+            <div className="bg-surface-container-low rounded-xl p-8 shadow-[0_4px_20px_rgba(0,0,0,0.02)] group hover:-translate-y-1 transition-all">
               <div className="w-12 h-12 bg-stone-100 rounded-full flex items-center justify-center mb-6 text-primary group-hover:bg-primary group-hover:text-on-primary transition-colors">
                 <span className="material-symbols-outlined">pest_control</span>
               </div>
@@ -111,7 +111,7 @@ const UserDashboard = () => {
               </div>
             </div>
             {/* History Tile 2 */}
-            <div className="bg-surface-container-lowest rounded-xl p-8 shadow-[0_4px_20px_rgba(0,0,0,0.02)] border border-outline-variant/10 group hover:-translate-y-1 transition-all">
+            <div className="bg-surface-container-low rounded-xl p-8 shadow-[0_4px_20px_rgba(0,0,0,0.02)] group hover:-translate-y-1 transition-all">
               <div className="w-12 h-12 bg-stone-100 rounded-full flex items-center justify-center mb-6 text-primary group-hover:bg-primary group-hover:text-on-primary transition-colors">
                 <span className="material-symbols-outlined">plumbing</span>
               </div>
@@ -124,7 +124,7 @@ const UserDashboard = () => {
               </div>
             </div>
             {/* History Tile 3 */}
-            <div className="bg-surface-container-lowest rounded-xl p-8 shadow-[0_4px_20px_rgba(0,0,0,0.02)] border border-outline-variant/10 group hover:-translate-y-1 transition-all">
+            <div className="bg-surface-container-low rounded-xl p-8 shadow-[0_4px_20px_rgba(0,0,0,0.02)] group hover:-translate-y-1 transition-all">
               <div className="w-12 h-12 bg-stone-100 rounded-full flex items-center justify-center mb-6 text-primary group-hover:bg-primary group-hover:text-on-primary transition-colors">
                 <span className="material-symbols-outlined">delivery_dining</span>
               </div>

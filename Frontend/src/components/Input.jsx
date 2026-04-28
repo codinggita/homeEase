@@ -11,33 +11,40 @@ const Input = ({
   ...props
 }) => {
   return (
-    <div className={`flex flex-col gap-1.5 ${className}`}>
+    <div className={`flex flex-col gap-2.5 ${className}`}>
       {label && (
-        <label htmlFor={id} className="text-sm font-semibold text-on-surface">
+        <label htmlFor={id} className="text-[11px] font-black text-on-surface/50 uppercase tracking-[0.2em] ml-1">
           {label}
         </label>
       )}
-      <div className="relative">
+      <div className="relative group">
         {icon && (
-          <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-lg pointer-events-none">
-            {icon}
-          </span>
+          <div className="absolute left-5 top-1/2 -translate-y-1/2 flex items-center justify-center pointer-events-none">
+            <span className="material-symbols-outlined text-on-surface-variant/40 text-xl group-focus-within:text-primary transition-all duration-300">
+              {icon}
+            </span>
+          </div>
         )}
         <Tag
           id={id}
           type={type}
           className={`
-            w-full bg-surface-container-low border rounded-xl px-4 py-3 text-sm text-on-surface
-            placeholder:text-on-surface-variant/60
-            focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary
-            transition-all duration-200
-            ${icon ? 'pl-10' : ''}
-            ${error ? 'border-error ring-1 ring-error/30' : 'border-outline-variant/40'}
+            w-full bg-surface-container border-none rounded-[1.5rem] py-4 text-sm text-on-surface placeholder:text-on-surface-variant/30
+            focus:outline-none focus:ring-4 focus:ring-primary/10 transition-all duration-300
+            ${icon ? 'pl-14 pr-6' : 'px-6'}
+            ${error ? 'bg-error/5 ring-1 ring-error/20' : ''}
+            ${props.disabled ? 'opacity-50 grayscale cursor-not-allowed' : ''}
+            ${Tag === 'textarea' ? 'resize-none min-h-[120px]' : ''}
           `}
           {...props}
         />
       </div>
-      {error && <p className="text-xs text-error font-medium">{error}</p>}
+      {error && (
+        <p className="text-[10px] text-error font-black uppercase tracking-wider mt-1 ml-4 animate-page-fade-in flex items-center gap-1.5">
+          <span className="material-symbols-outlined text-[14px]" style={{ fontVariationSettings: "'FILL' 1" }}>error</span>
+          {error}
+        </p>
+      )}
     </div>
   );
 };

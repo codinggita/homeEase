@@ -16,6 +16,8 @@ import EmergencySuccess from './pages/EmergencySuccess';
 import MessagesPage from './pages/MessagesPage';
 import HelpPage from './pages/HelpPage';
 import ProfilePage from './pages/ProfilePage';
+import JobRequestsPage from './pages/JobRequestsPage';
+import EarningsPage from './pages/EarningsPage';
 
 import { BookingProvider } from './context/BookingContext';
 
@@ -29,6 +31,8 @@ function App() {
         <Route path="/user-dashboard" element={<UserDashboard />} />
         <Route path="/bookings" element={<BookingHistory />} />
         <Route path="/worker-dashboard" element={<WorkerDashboard />} />
+        <Route path="/job-requests" element={<JobRequestsPage />} />
+        <Route path="/earnings" element={<EarningsPage />} />
         <Route path="/admin-dashboard" element={<AdminDashboard />} />
         <Route path="/booking" element={<BookingPage />} />
         <Route path="/workers" element={<WorkerSelectionPage />} />

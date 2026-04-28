@@ -41,7 +41,7 @@ const WorkerDashboard = () => {
           <p className="text-on-surface-variant text-lg">Your expertise is making homes better today.</p>
         </div>
         <div className="flex items-center gap-6">
-          <div className="flex items-center gap-4 bg-surface-container-low p-2 pr-6 rounded-full border border-outline-variant/10 shadow-sm">
+          <div className="flex items-center gap-4 bg-surface-container-low p-2 pr-6 rounded-full shadow-sm">
             <div className={`w-3 h-3 rounded-full ml-4 ${isOnline ? 'bg-success animate-pulse' : 'bg-outline-variant'}`}></div>
             <span className="text-sm font-bold text-on-surface">{isOnline ? 'Online' : 'Offline'}</span>
             <button 
@@ -62,7 +62,7 @@ const WorkerDashboard = () => {
           { label: "Avg Rating", value: "4.9", icon: "star", color: "text-amber-500" },
           { label: "Active Jobs", value: "1", icon: "schedule", color: "text-tertiary" }
         ].map((stat, i) => (
-          <div key={i} className="bg-surface-container-low p-6 rounded-3xl border border-outline-variant/10 shadow-sm hover:shadow-md transition-shadow">
+          <div key={i} className="bg-surface-container-low p-6 rounded-3xl shadow-sm hover:shadow-md transition-shadow">
             <div className="flex items-center justify-between mb-4">
               <span className={`material-symbols-outlined ${stat.color} text-3xl`}>{stat.icon}</span>
               <span className="text-[10px] font-black text-on-surface-variant/40 uppercase tracking-widest font-headline italic">LIVE</span>
@@ -75,7 +75,7 @@ const WorkerDashboard = () => {
 
       <div className="grid grid-cols-12 gap-8">
         {/* Active Job Card */}
-        <div className="col-span-12 lg:col-span-7 bg-surface-container-low rounded-[3rem] p-10 relative overflow-hidden h-[500px] shadow-sm border border-outline-variant/10 group">
+        <div className="col-span-12 lg:col-span-7 bg-surface-container-low rounded-[3rem] p-10 relative overflow-hidden h-[500px] shadow-sm group">
           <div className="relative z-10 h-full flex flex-col">
             <div className="flex justify-between items-start mb-12">
               <span className="bg-primary-container text-on-primary-container px-6 py-2 rounded-full text-[10px] font-black uppercase tracking-[0.2em]">Active Job • In Progress</span>
@@ -113,7 +113,7 @@ const WorkerDashboard = () => {
         {/* New Requests & Upcoming Section */}
         <div className="col-span-12 lg:col-span-5 space-y-6">
           {/* New Request Single Card */}
-          <div className="bg-surface-container-highest rounded-[2.5rem] p-6 border border-outline-variant/10 shadow-sm relative overflow-hidden">
+          <div className="bg-surface-container-highest rounded-[2.5rem] p-6 shadow-sm relative overflow-hidden">
             <div className="flex items-center justify-between mb-4 relative z-10">
               <div className="flex items-center gap-3">
                 <span className="w-2 h-2 bg-error rounded-full animate-pulse"></span>
@@ -127,7 +127,7 @@ const WorkerDashboard = () => {
               </button>
             </div>
 
-            <div className="bg-surface-container-lowest p-6 rounded-3xl border border-outline-variant/10 mb-2 animate-page-fade-in relative z-10" key={currentRequest.id}>
+            <div className="bg-surface-container-low p-6 rounded-3xl mb-2 animate-page-fade-in relative z-10" key={currentRequest.id}>
               <div className="flex justify-between items-start mb-4">
                 <div>
                   <h4 className="text-xl font-black font-headline text-primary">{currentRequest.type}</h4>
@@ -154,7 +154,7 @@ const WorkerDashboard = () => {
           </div>
 
           {/* Upcoming Work Card */}
-          <div className="bg-tertiary-container rounded-[2.5rem] p-8 border border-outline-variant/10 shadow-sm group cursor-pointer hover:bg-tertiary-fixed-dim transition-colors">
+          <div className="bg-tertiary-container rounded-[2.5rem] p-8 shadow-sm group cursor-pointer hover:bg-tertiary-fixed-dim transition-colors">
             <div className="flex items-center gap-3 mb-6">
               <span className="material-symbols-outlined text-tertiary text-xl" style={{ fontVariationSettings: "'FILL' 1" }}>event_upcoming</span>
               <h3 className="text-lg font-black font-headline text-on-tertiary-container">Upcoming Work</h3>
@@ -180,7 +180,7 @@ const WorkerDashboard = () => {
       </div>
 
       {/* Weekly Earnings visualization */}
-      <div className="mt-12 bg-surface-container-low p-8 rounded-[2.5rem] shadow-sm border border-outline-variant/10">
+      <div className="mt-12 bg-surface-container-low p-8 rounded-[2.5rem] shadow-sm">
          <div className="flex items-center justify-between mb-8">
             <h2 className="text-2xl font-black font-headline text-on-surface">Weekly Performance</h2>
             <div className="bg-surface-container-high px-4 py-2 rounded-full text-xs font-bold text-on-surface-variant flex items-center gap-2">
@@ -220,7 +220,7 @@ const WorkerDashboard = () => {
             { name: "Rahul V.", date: "2 days ago", rating: 5, comment: "Excellent work! Rahul was very professional and left the kitchen spotless.", service: "Deep Cleaning" },
             { name: "Sanya M.", date: "1 week ago", rating: 4, comment: "Punctual and efficient. The AC is working perfectly now.", service: "AC Repair" }
           ].map((rev, i) => (
-            <div key={i} className="bg-surface-container-lowest p-6 rounded-3xl border border-outline-variant/10 shadow-sm">
+            <div key={i} className="bg-surface-container-low p-6 rounded-3xl shadow-sm">
               <div className="flex justify-between items-start mb-4">
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center text-primary font-bold">
