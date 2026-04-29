@@ -74,7 +74,6 @@ const WorkerDashboard = () => {
       </div>
 
       <div className="grid grid-cols-12 gap-8">
-        {/* Active Job Card */}
         <div className="col-span-12 lg:col-span-7 bg-surface-container-low rounded-[3rem] p-10 relative overflow-hidden h-[500px] shadow-sm group">
           <div className="relative z-10 h-full flex flex-col">
             <div className="flex justify-between items-start mb-12">
@@ -86,8 +85,8 @@ const WorkerDashboard = () => {
             </div>
             
             <div className="mb-8">
-              <h2 className="text-5xl font-black mb-4 font-headline leading-none text-on-surface">Deep Kitchen Sanitization</h2>
-              <div className="flex items-center gap-4 text-on-surface-variant">
+              <h2 className="text-5xl font-black mb-4 font-headline leading-none" style={{ color: '#111827' }}>Deep Kitchen Sanitization</h2>
+              <div className="flex items-center gap-4" style={{ color: '#374151' }}>
                 <span className="material-symbols-outlined text-base">person</span>
                 <span className="font-bold">Priya Sharma</span>
                 <span className="w-1 h-1 bg-outline-variant rounded-full"></span>
@@ -100,13 +99,20 @@ const WorkerDashboard = () => {
               <Button icon="directions" className="!rounded-2xl !px-8">Navigate</Button>
               <Button icon="chat" variant="secondary" className="!rounded-2xl !px-8">Contact</Button>
               <div className="ml-auto flex items-center gap-3 bg-surface-container-high px-4 py-2 rounded-2xl border border-outline-variant/20">
-                <span className="text-xs font-bold text-on-surface-variant">Payout</span>
-                <span className="text-lg font-black text-on-surface">₹1,200</span>
+                <span className="text-xs font-bold" style={{ color: '#6b7280' }}>Payout</span>
+                <span className="text-lg font-black" style={{ color: '#111827' }}>₹1,200</span>
               </div>
             </div>
           </div>
-          <div className="absolute right-0 top-0 bottom-0 w-1/3 bg-stone-200/50 rounded-l-[5rem] overflow-hidden opacity-40 group-hover:opacity-60 transition-opacity">
-            <img alt="Kitchen" src="https://images.unsplash.com/photo-1556911220-e15224bbbe39?auto=format&fit=crop&q=80&w=800" className="w-full h-full object-cover grayscale" />
+          {/* Kitchen background image - no crossOrigin so it loads normally */}
+          <div className="absolute right-0 top-0 bottom-0 w-2/5 overflow-hidden" style={{ borderRadius: '0 3rem 3rem 5rem' }}>
+            <img
+              alt="Kitchen"
+              src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=600&q=75&auto=format&fit=crop"
+              className="w-full h-full object-cover"
+              style={{ opacity: 0.75 }}
+            />
+            <div className="absolute inset-0" style={{ background: 'linear-gradient(to right, rgba(245,244,238,0.8) 0%, rgba(245,244,238,0.1) 100%)' }}></div>
           </div>
         </div>
 
